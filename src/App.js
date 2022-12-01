@@ -12,8 +12,10 @@ const INITIAL_STATE = {
   cardRare: 'normal',
   cardTrunfo: false,
   hasTrunfo: false,
-  isSaveButtonDisabled: false,
+  isSaveButtonDisabled: true,
 };
+const maxPower = 90;
+const maxPowerTotal = 210;
 
 class App extends React.Component {
   state = {
@@ -29,6 +31,26 @@ class App extends React.Component {
     const { value } = target;
     this.setState({
       [target.id]: target.id !== 'cardTrunfo' ? value : target.checked,
+    }, () => {
+      this.setState((prevState) => {
+        const { cardAttr1, cardAttr2, cardAttr3 } = prevState;
+        return {
+          isSaveButtonDisabled: !(
+            prevState.cardName.length > 0
+          && prevState.cardDescription.length > 0
+          && prevState.cardImage.length > 0
+          && cardAttr1.length > 0
+          && cardAttr2.length > 0
+          && cardAttr3.length > 0
+          && cardAttr1 >= 0 && cardAttr1 <= maxPower
+          && cardAttr2 >= 0 && cardAttr2 <= maxPower
+          && cardAttr3 >= 0 && cardAttr3 <= maxPower
+          && ((parseInt(cardAttr1, 10)
+            + parseInt(cardAttr2, 10)
+            + parseInt(cardAttr3, 10)) <= maxPowerTotal)
+          ),
+        };
+      });
     });
   };
 
