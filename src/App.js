@@ -36,7 +36,6 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
     } = this.state;
-    console.log('cardTrunfo:', cardTrunfo);
     const newCard = {
       cardName,
       cardDescription,
@@ -47,12 +46,10 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
     };
-    console.log('newCard:', newCard);
     this.setState((prevState) => ({
       cards: [...prevState.cards, newCard],
     }), () => {
       const { cards } = this.state;
-      console.log('arrayCards', cards);
       const hasTrunfo = cards.some((card) => card.cardTrunfo);
       if (hasTrunfo) {
         this.setState({
@@ -86,6 +83,22 @@ class App extends React.Component {
             + parseInt(cardAttr3, 10)) <= maxPowerTotal)
           ),
         };
+      });
+    });
+  };
+
+  onDelete = ({ target }) => {
+    this.setState((prevState) => {
+      const { cards } = prevState;
+      const newCards = cards.filter((card) => card.cardName !== target.id);
+      return {
+        cards: newCards,
+      };
+    }, () => {
+      const { cards } = this.state;
+      const hasTrunfo = cards.some((card) => card.cardTrunfo);
+      this.setState({
+        hasTrunfo,
       });
     });
   };
@@ -134,6 +147,8 @@ class App extends React.Component {
               cardImage={ cardImage }
               cardRare={ cardRare }
               cardTrunfo={ cardTrunfo }
+              createDeleteButton={ false }
+              onDelete={ () => {} }
             />
           </div>
         </div>
@@ -162,6 +177,8 @@ class App extends React.Component {
                     cardImage={ image }
                     cardRare={ rare }
                     cardTrunfo={ trunfo }
+                    createDeleteButton
+                    onDelete={ this.onDelete }
                   />
                 </div>
               );

@@ -2,6 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Card extends React.Component {
+  deleteButton = (cardName, createDeleteButton, onDelete) => {
+    if (createDeleteButton) {
+      return (
+        <button
+          id={ cardName }
+          type="button"
+          onClick={ onDelete }
+          data-testid="delete-button"
+        >
+          Excluir
+        </button>);
+    }
+    return null;
+  };
+
   render() {
     const {
       cardName,
@@ -12,6 +27,8 @@ class Card extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      createDeleteButton,
+      onDelete,
     } = this.props;
     return (
       <>
@@ -19,6 +36,9 @@ class Card extends React.Component {
         <div className="card">
           {
             cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null
+          }
+          {
+            this.deleteButton(cardName, createDeleteButton, onDelete)
           }
           <p data-testid="name-card">{ cardName }</p>
           <img src={ cardImage } alt={ cardName } data-testid="image-card" />
@@ -52,6 +72,8 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  createDeleteButton: PropTypes.bool.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default Card;
