@@ -84,14 +84,17 @@ class Form extends React.Component {
           <option value="raro">Raro</option>
           <option value="muito raro">Muito Raro</option>
         </select>
-        <input
-          type="checkbox"
-          name=""
-          id="cardTrunfo"
-          data-testid="trunfo-input"
-          checked={ cardTrunfo }
-          onChange={ onInputChange }
-        />
+        {
+          !hasTrunfo ? <input
+            type="checkbox"
+            name=""
+            id="cardTrunfo"
+            data-testid="trunfo-input"
+            checked={ cardTrunfo }
+            onChange={ onInputChange }
+          /> : <p>Você já tem um Super Trunfo em seu baralho</p>
+
+        }
         <button
           type="submit"
           data-testid="save-button"
@@ -99,9 +102,6 @@ class Form extends React.Component {
           onClick={ onSaveButtonClick }
         >
           Salvar
-          {' '}
-          { hasTrunfo }
-
         </button>
       </form>
     );
