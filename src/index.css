@@ -11,3 +11,65 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  background-color: rgb(232, 230, 232);
+}
+
+.principal {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.principal h1 {
+  background-color: #40d61a;
+  margin-bottom: 0;
+  padding: 5px;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  color: white;
+}
+
+input {
+  margin-bottom: 15px;
+  border: 1px solid #6f6f6f;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+textarea {
+  margin-bottom: 15px;
+  border: 1px solid 6f6f6f;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 30px;
+  margin: auto;
+  width: 20vw;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 30px;
+  margin: auto;
+  width: 20vw;
+}

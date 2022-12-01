@@ -18,7 +18,7 @@ class Form extends React.Component {
       onSaveButtonClick,
     } = this.props;
     return (
-      <form action="">
+      <form action="" className="formulario">
         <input
           type="text"
           name=""
@@ -26,7 +26,6 @@ class Form extends React.Component {
           data-testid="name-input"
           value={ cardName }
           onChange={ onInputChange }
-          placeholder="Digite o nome"
         />
         <textarea
           name=""

@@ -1,18 +1,20 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+import './index.css';
 
 const INITIAL_STATE = {
   cardName: '',
   cardDescription: '',
-  cardAttr1: '',
-  cardAttr2: '',
-  cardAttr3: '',
+  cardAttr1: 0,
+  cardAttr2: 0,
+  cardAttr3: 0,
   cardImage: '',
   cardRare: 'normal',
   cardTrunfo: false,
   hasTrunfo: false,
   isSaveButtonDisabled: true,
+  cards: [],
 };
 const maxPower = 90;
 const maxPowerTotal = 210;
@@ -25,6 +27,7 @@ class App extends React.Component {
   onSaveButtonClick = (e) => {
     e.preventDefault();
     console.log(e);
+    this.setState({ ...INITIAL_STATE });
   };
 
   handleChange = ({ target }) => {
@@ -68,22 +71,24 @@ class App extends React.Component {
       isSaveButtonDisabled,
     } = this.state;
     return (
-      <div>
-        <h1>Tryunfo</h1>
-        <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onInputChange={ this.handleChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
+      <div className="principal">
+        <div className="column">
+          <h1>Tryunfo</h1>
+          <Form
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            hasTrunfo={ hasTrunfo }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
+            onInputChange={ this.handleChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
+          />
+        </div>
         <Card
           cardName={ cardName }
           cardDescription={ cardDescription }
