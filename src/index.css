@@ -17,15 +17,27 @@ body {
   height: 100vh;
   padding: 0;
   background-color: rgb(232, 230, 232);
+  overflow: auto;
 }
 
 .principal {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  margin-bottom: 100px;
 }
 
-.principal h1 {
+.secundaria {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.secundaria .card {
+  margin: 0 auto;
+}
+
+h1 {
   background-color: #40d61a;
   margin-bottom: 0;
   padding: 5px;
@@ -51,7 +63,16 @@ textarea {
 .column {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  /* margin: 50px auto; */
+}
+
+.centralize {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-5 {
+  margin-top: 5vh;
 }
 
 .formulario {
@@ -59,7 +80,7 @@ textarea {
   flex-direction: column;
   background-color: white;
   padding: 30px;
-  margin: auto;
+  margin: 0 auto;
   width: 20vw;
   border-radius: 0 0 10px 10px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -70,6 +91,7 @@ textarea {
   flex-direction: column;
   background-color: white;
   padding: 30px;
-  margin: auto;
-  width: 20vw;
+  margin: 0 auto;
+  width: 15vw;
+  border-radius: 0 0 10px 10px;
 }

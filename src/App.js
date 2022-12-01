@@ -102,36 +102,72 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
+      cards,
     } = this.state;
     return (
-      <div className="principal">
-        <div className="column">
-          <h1>Tryunfo</h1>
-          <Form
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-            hasTrunfo={ hasTrunfo }
-            isSaveButtonDisabled={ isSaveButtonDisabled }
-            onInputChange={ this.handleChange }
-            onSaveButtonClick={ this.onSaveButtonClick }
-          />
+      <div className="column">
+        <div className="principal mt-5">
+          <div className="column centralize">
+            <h1>Tryunfo</h1>
+            <Form
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+              hasTrunfo={ hasTrunfo }
+              isSaveButtonDisabled={ isSaveButtonDisabled }
+              onInputChange={ this.handleChange }
+              onSaveButtonClick={ this.onSaveButtonClick }
+            />
+          </div>
+          <div className="column centralize">
+            <Card
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+            />
+          </div>
         </div>
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
+        <div className="secundaria">
+          {
+            cards.map((card) => {
+              const {
+                cardName: name,
+                cardDescription: description,
+                cardAttr1: attr1,
+                cardAttr2: attr2,
+                cardAttr3: attr3,
+                cardImage: image,
+                cardRare: rare,
+                cardTrunfo: trunfo,
+              } = card;
+              return (
+                <div className="column centralize" key={ name }>
+                  <Card
+                    key={ name }
+                    cardName={ name }
+                    cardDescription={ description }
+                    cardAttr1={ attr1 }
+                    cardAttr2={ attr2 }
+                    cardAttr3={ attr3 }
+                    cardImage={ image }
+                    cardRare={ rare }
+                    cardTrunfo={ trunfo }
+                  />
+                </div>
+              );
+            })
+          }
+        </div>
       </div>
     );
   }
