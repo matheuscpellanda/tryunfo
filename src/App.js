@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   isSaveButtonDisabled: true,
   filter: '',
   filterRare: 'todas',
+  filterTrunfo: false,
 };
 const maxPower = 90;
 const maxPowerTotal = 210;
@@ -65,7 +66,9 @@ class App extends React.Component {
   handleChange = ({ target }) => {
     const { value } = target;
     this.setState({
-      [target.id]: target.id !== 'cardTrunfo' ? value : target.checked,
+      [target.id]: (target.id
+      !== 'cardTrunfo' && target.id !== 'filterTrunfo') ? value
+        : target.checked,
     }, () => {
       this.setState((prevState) => {
         const { cardAttr1, cardAttr2, cardAttr3 } = prevState;
@@ -120,6 +123,7 @@ class App extends React.Component {
       cards,
       filter,
       filterRare,
+      filterTrunfo,
     } = this.state;
     return (
       <div className="column">
@@ -164,6 +168,7 @@ class App extends React.Component {
             data-testid="name-filter"
             value={ filter }
             onChange={ this.handleChange }
+            disabled={ filterTrunfo }
           />
           <select
             name=""
@@ -171,21 +176,35 @@ class App extends React.Component {
             data-testid="rare-filter"
             value={ filterRare }
             onChange={ this.handleChange }
+            disabled={ filterTrunfo }
           >
             <option value="todas">Todas</option>
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
             <option value="muito raro">Muito Raro</option>
           </select>
+          <label htmlFor="filterTrunfo">
+            Super Trunfo
+            <input
+              type="checkbox"
+              name=""
+              id="filterTrunfo"
+              data-testid="trunfo-filter"
+              checked={ filterTrunfo }
+              onChange={ this.handleChange }
+            />
+          </label>
           <div className="secundaria">
             {
               cards.filter((card) => {
                 const {
                   cardName: name,
                   cardRare: rare,
+                  cardTrunfo: trunfo,
                 } = card;
                 return name.toLowerCase().includes(filter.toLowerCase())
-                  && (filterRare === 'todas' ? true : (rare === filterRare));
+                  && (filterRare === 'todas' ? true : (rare === filterRare))
+                  && (filterTrunfo === true ? (trunfo === true) : true);
               })
                 .map((card) => {
                   const {
@@ -198,6 +217,7 @@ class App extends React.Component {
                     cardRare: rare,
                     cardTrunfo: trunfo,
                   } = card;
+                  console.log('trunfo?', trunfo);
                   return (
                     <div className="column centralize" key={ name }>
                       <Card
