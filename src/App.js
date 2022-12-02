@@ -15,6 +15,7 @@ const INITIAL_STATE = {
   hasTrunfo: false,
   isSaveButtonDisabled: true,
   filter: '',
+  filterRare: 'todas',
 };
 const maxPower = 90;
 const maxPowerTotal = 210;
@@ -118,6 +119,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       cards,
       filter,
+      filterRare,
     } = this.state;
     return (
       <div className="column">
@@ -163,13 +165,27 @@ class App extends React.Component {
             value={ filter }
             onChange={ this.handleChange }
           />
+          <select
+            name=""
+            id="filterRare"
+            data-testid="rare-filter"
+            value={ filterRare }
+            onChange={ this.handleChange }
+          >
+            <option value="todas">Todas</option>
+            <option value="normal">Normal</option>
+            <option value="raro">Raro</option>
+            <option value="muito raro">Muito Raro</option>
+          </select>
           <div className="secundaria">
             {
               cards.filter((card) => {
                 const {
                   cardName: name,
+                  cardRare: rare,
                 } = card;
-                return name.toLowerCase().includes(filter.toLowerCase());
+                return name.toLowerCase().includes(filter.toLowerCase())
+                  && (filterRare === 'todas' ? true : (rare === filterRare));
               })
                 .map((card) => {
                   const {
