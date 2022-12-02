@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   cardTrunfo: false,
   hasTrunfo: false,
   isSaveButtonDisabled: true,
+  filter: '',
 };
 const maxPower = 90;
 const maxPowerTotal = 210;
@@ -116,6 +117,7 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
       cards,
+      filter,
     } = this.state;
     return (
       <div className="column">
@@ -152,38 +154,54 @@ class App extends React.Component {
             />
           </div>
         </div>
-        <div className="secundaria">
-          {
-            cards.map((card) => {
-              const {
-                cardName: name,
-                cardDescription: description,
-                cardAttr1: attr1,
-                cardAttr2: attr2,
-                cardAttr3: attr3,
-                cardImage: image,
-                cardRare: rare,
-                cardTrunfo: trunfo,
-              } = card;
-              return (
-                <div className="column centralize" key={ name }>
-                  <Card
-                    key={ name }
-                    cardName={ name }
-                    cardDescription={ description }
-                    cardAttr1={ attr1 }
-                    cardAttr2={ attr2 }
-                    cardAttr3={ attr3 }
-                    cardImage={ image }
-                    cardRare={ rare }
-                    cardTrunfo={ trunfo }
-                    createDeleteButton
-                    onDelete={ this.onDelete }
-                  />
-                </div>
-              );
-            })
-          }
+        <div className="column">
+          <input
+            type="text"
+            name=""
+            id="filter"
+            data-testid="name-filter"
+            value={ filter }
+            onChange={ this.handleChange }
+          />
+          <div className="secundaria">
+            {
+              cards.filter((card) => {
+                const {
+                  cardName: name,
+                } = card;
+                return name.toLowerCase().includes(filter.toLowerCase());
+              })
+                .map((card) => {
+                  const {
+                    cardName: name,
+                    cardDescription: description,
+                    cardAttr1: attr1,
+                    cardAttr2: attr2,
+                    cardAttr3: attr3,
+                    cardImage: image,
+                    cardRare: rare,
+                    cardTrunfo: trunfo,
+                  } = card;
+                  return (
+                    <div className="column centralize" key={ name }>
+                      <Card
+                        key={ name }
+                        cardName={ name }
+                        cardDescription={ description }
+                        cardAttr1={ attr1 }
+                        cardAttr2={ attr2 }
+                        cardAttr3={ attr3 }
+                        cardImage={ image }
+                        cardRare={ rare }
+                        cardTrunfo={ trunfo }
+                        createDeleteButton
+                        onDelete={ this.onDelete }
+                      />
+                    </div>
+                  );
+                })
+            }
+          </div>
         </div>
       </div>
     );
