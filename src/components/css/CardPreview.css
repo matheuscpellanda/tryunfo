@@ -1,0 +1,21 @@
+.preview-h1 {
+  color: #2fc18c;
+  font-family: Epilogue , monospace;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 29px;
+  text-transform: uppercase;
+}
+
+.card-preview {
+  align-items: center;
+  background: #036b52;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  width: 100%;
+}

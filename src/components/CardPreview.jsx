@@ -1,24 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './css/Card.css';
+import './css/CardPreview.css';
 import logo from '../img/logo_tryunfo.png';
+import logoReact from '../img/logo_tryunfo.jpg';
 
-class Card extends React.Component {
-  deleteButton = (cardName, createDeleteButton, onDelete) => {
-    if (createDeleteButton) {
-      return (
-        <button
-          id={ cardName }
-          type="button"
-          onClick={ onDelete }
-          data-testid="delete-button"
-        >
-          Excluir
-        </button>);
-    }
-    return null;
-  };
-
+class CardPreview extends React.Component {
   render() {
     const {
       cardName,
@@ -29,16 +15,11 @@ class Card extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      createDeleteButton,
-      onDelete,
     } = this.props;
     return (
       <div className="card">
-        {
-          this.deleteButton(cardName, createDeleteButton, onDelete)
-        }
-        <div className="card-stored">
-          <h1 className="card-title" data-testid="name-card">{ cardName }</h1>
+        <div className="card-preview">
+          <h1 data-testid="name-card" className="card-title">{ cardName }</h1>
           {
             cardTrunfo ? (
               <span data-testid="trunfo-card" className="trunfo-card">
@@ -55,6 +36,10 @@ class Card extends React.Component {
             alt={ cardName }
             data-testid="image-card"
             className="image-card"
+            onError={ ({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src = logoReact;
+            } }
           />
           <span className="span-description">
             <p
@@ -91,7 +76,7 @@ class Card extends React.Component {
   }
 }
 
-Card.propTypes = {
+CardPreview.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
   cardAttr1: PropTypes.string.isRequired,
@@ -100,8 +85,6 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  createDeleteButton: PropTypes.bool.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
-export default Card;
+export default CardPreview;
