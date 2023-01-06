@@ -126,3 +126,26 @@
   text-align: end;
   width: 90%;
 }
+
+.button-delete {
+  background-color: transparent;
+  background-image: url('../../img/delete.png');
+  background-size: cover;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  height: 30px;
+  margin: -10px 0 5px auto;
+  padding: 5px;
+  width: 30px;
+}
+
+.button-delete:hover {
+  border: 1px solid black;
+}
+
+.button-delete:active {
+  background-color: rgb(197, 197, 197);
+  border: 1px solid rgb(197, 197, 197);
+}

@@ -150,7 +150,6 @@ class App extends React.Component {
               cardImage={ cardImage }
               cardRare={ cardRare }
               cardTrunfo={ cardTrunfo }
-              createDeleteButton={ false }
               onDelete={ () => {} }
             />
           </div>
@@ -230,7 +229,6 @@ class App extends React.Component {
                         cardImage={ image }
                         cardRare={ rare }
                         cardTrunfo={ trunfo }
-                        createDeleteButton
                         onDelete={ this.onDelete }
                       />
                     </div>

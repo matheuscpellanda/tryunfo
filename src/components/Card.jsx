@@ -4,21 +4,6 @@ import './css/Card.css';
 import logo from '../img/logo_tryunfo.png';
 
 class Card extends React.Component {
-  deleteButton = (cardName, createDeleteButton, onDelete) => {
-    if (createDeleteButton) {
-      return (
-        <button
-          id={ cardName }
-          type="button"
-          onClick={ onDelete }
-          data-testid="delete-button"
-        >
-          Excluir
-        </button>);
-    }
-    return null;
-  };
-
   render() {
     const {
       cardName,
@@ -29,14 +14,19 @@ class Card extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      createDeleteButton,
       onDelete,
     } = this.props;
     return (
       <div className="card">
-        {
-          this.deleteButton(cardName, createDeleteButton, onDelete)
-        }
+        <button
+          id={ cardName }
+          type="button"
+          onClick={ onDelete }
+          data-testid="delete-button"
+          className="button-delete"
+        >
+          {}
+        </button>
         <div className="card-stored">
           <h1 className="card-title" data-testid="name-card">{ cardName }</h1>
           {
@@ -100,7 +90,6 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  createDeleteButton: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
